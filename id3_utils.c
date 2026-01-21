@@ -6,17 +6,7 @@
 TODO: Add documention 
  */
 TagData* create_tag_data() {
-    TagData *data = (TagData *)malloc(sizeof(TagData));
-    if (data) {
-        data->version = NULL;
-        data->title = NULL;
-        data->artist = NULL;
-        data->album = NULL;
-        data->year = NULL;
-        data->comment = NULL;
-        data->genre = NULL;
-        // Initialize other fields as needed
-    }
+    TagData *data = (TagData *)calloc(1, sizeof(TagData));
     return data;
 }
 
@@ -32,7 +22,39 @@ void free_tag_data(TagData *data) {
         free(data->year);
         free(data->comment);
         free(data->genre);
-        // Free other fields as needed
+        if((data->album_art.mime_type) != NULL) free(data->album_art.mime_type);
+        if((data->album_art.image_data) != NULL) free(data->album_art.image_data);
         free(data);
+    }
+}
+
+uint32_t big_endian_to_host(uint8_t *bytes)
+{
+    uint32_t val = 0;
+    for(int i = 0; i < 4; i++)
+    {
+        // Shift starts at 24 and drops by 8 each time: 24, 16, 8, 0
+        val |= (uint32_t)bytes[i] << (24 - (i * 8));
+    }
+    return val;
+}
+
+uint32_t synchsafe_to_int(uint8_t *bytes)
+{
+    uint32_t val = 0;
+    for(int i = 0; i < 4; i++)
+    {
+        // Shift starts at 21 and drops by 7 each time: 21, 14, 7, 0
+        val |= (uint32_t)bytes[i] << (21 - (i * 7));
+    }
+    return val;
+}
+
+void int_to_synchsafe(uint32_t num, uint8_t* out_bytes)
+{
+    unsigned int mask = 0x7F;
+    for(int i = 0; i < 4; i++)
+    {
+        out_bytes[i] = (num >> (21 - (i * 7))) & mask;
     }
 }
