@@ -70,7 +70,7 @@ TagData* read_id3_tags(const char *filename)
 
         char *content = malloc(frame_size + 1);
         fread(content, 1, frame_size, fp);
-        content[frame_size] = '\0';
+        content[frame_size] = '\0'; 
         bytes_read += frame_size;
 
         if(strncmp(frame_header, "TIT2", 4) == 0) data->title = content;
@@ -95,12 +95,54 @@ void display_metadata(const TagData *data) {
     printf("---------------------\n");
 
     printf("Version ID : 2.%d\n", data->tag_version);
-    if (data->title)   printf("Title      : %s\n", data->title + 1);
-    if (data->artist)  printf("Artist     : %s\n", data->artist + 1);
-    if (data->album)   printf("Album      : %s\n", data->album + 1);
-    if (data->year)    printf("Year       : %s\n", data->year + 1);
-    if (data->genre)   printf("Genre      : %s\n", data->genre + 1);
-    if (data->comment) printf("Comment    : %s\n", data->comment + 1);
+
+    /* Title */
+    if (data->title && data->title[0] == 0x01) {
+        printf("Title      : ");
+        utf_16_decoder(data->title);
+    } else if (data->title) {
+        printf("Title      : %s\n", data->title + 1);
+    }
+
+    /* Artist */
+    if (data->artist && data->artist[0] == 0x01) {
+        printf("Artist     : ");
+        utf_16_decoder(data->artist);
+    } else if (data->artist) {
+        printf("Artist     : %s\n", data->artist + 1);
+    }
+
+    /* Album */
+    if (data->album && data->album[0] == 0x01) {
+        printf("Album      : ");
+        utf_16_decoder(data->album);
+    } else if (data->album) {
+        printf("Album      : %s\n", data->album + 1);
+    }
+
+    /* Year */
+    if (data->year && data->year[0] == 0x01) {
+        printf("Year       : ");
+        utf_16_decoder(data->year);
+    } else if (data->year) {
+        printf("Year       : %s\n", data->year + 1);
+    }
+
+    /* Genre */
+    if (data->genre && data->genre[0] == 0x01) {
+        printf("Genre      : ");
+        utf_16_decoder(data->genre);
+    } else if (data->genre) {
+        printf("Genre      : %s\n", data->genre + 1);
+    }
+
+    /* Comment */
+    if (data->comment && data->comment[0] == 0x01) {
+        printf("Comment    : ");
+        utf_16_decoder(data->comment);
+    } else if (data->comment) {
+        printf("Comment    : %s\n", data->comment + 1);
+    }
 }
 
 /**
@@ -114,4 +156,28 @@ void view_tags(const char *filename) {
     }
     display_metadata(data);
     free_tag_data(data);
+}
+
+void utf_16_decoder(char *content)
+{
+    char *ptr = content;
+        //UTF-16 Detected
+        //Start At index 3 (Skip Flag + BOM bytes 1 & 2)
+        int i = 3;
+        //Loop Until we hit a double terminator
+        //Note : This Assume Frame size is accurate 
+    while(ptr[i] || ptr[i + 1])
+    {
+        //If the byte has a letter to it, print it
+        if(ptr[i] > 0)
+        {
+            printf("%c", ptr[i]);
+        }
+
+            i += 2;
+    }
+    printf("\n");
+
+        
+    
 }

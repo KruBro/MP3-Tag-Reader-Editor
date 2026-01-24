@@ -18,4 +18,6 @@ TODO: Add documention as sample given
  */
 void view_tags(const char *filename);
 
+void utf_16_decoder(char *content);
+
 #endif // ID3_READER_H
