@@ -83,7 +83,7 @@ void display_help() {
     /* =========================================================================
      * General usage syntax
      * ========================================================================= */
-    printf("Usage: ./mp3_tag_reader [OPTION] [FILE] [...]\n\n");
+    printf("Usage: ./mp3_tag_editor [OPTION] [FILE] [...]\n\n");
     
     /* =========================================================================
      * Standard viewing and help options
@@ -118,10 +118,10 @@ void display_help() {
      * Practical usage examples
      * ========================================================================= */
     printf("Examples:\n");
-    printf("  ./mp3_tag_reader -v song.mp3\n");
-    printf("  ./mp3_tag_reader -e -t \"New Title\" song.mp3\n");
-    printf("  ./mp3_tag_reader -d song.mp3 -c\n");
-    printf("  ./mp3_tag_reader -x song.mp3 cover.jpg\n");
+    printf("  ./mp3_tag_editor -v song.mp3\n");
+    printf("  ./mp3_tag_editor -e -t \"New Title\" song.mp3\n");
+    printf("  ./mp3_tag_editor -d song.mp3 -c\n");
+    printf("  ./mp3_tag_editor -x song.mp3 cover.jpg\n");
     printf("==================================================================\n\n");
 }
 
@@ -182,8 +182,8 @@ int main(int argc, char *argv[]) {
     /* =========================================================================
      * OPERATION 1: Display Help
      * 
-     * Command: ./mp3_tag_reader -h
-     * Command: ./mp3_tag_reader --help
+     * Command: ./mp3_tag_editor -h
+     * Command: ./mp3_tag_editor --help
      * ========================================================================= */
     if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
         display_help();
@@ -193,7 +193,7 @@ int main(int argc, char *argv[]) {
     /* =========================================================================
      * OPERATION 2: View Tags
      * 
-     * Command: ./mp3_tag_reader -v song.mp3
+     * Command: ./mp3_tag_editor -v song.mp3
      * 
      * Arguments:
      *   argv[0]: program name
@@ -213,7 +213,7 @@ int main(int argc, char *argv[]) {
     /* =========================================================================
      * OPERATION 3: Edit Tag
      * 
-     * Command: ./mp3_tag_reader -e -t "New Title" song.mp3
+     * Command: ./mp3_tag_editor -e -t "New Title" song.mp3
      * 
      * Arguments:
      *   argv[0]: program name
@@ -242,7 +242,7 @@ int main(int argc, char *argv[]) {
     /* =========================================================================
      * OPERATION 4: Delete Specific Tag
      * 
-     * Command: ./mp3_tag_reader -d song.mp3 -t
+     * Command: ./mp3_tag_editor -d song.mp3 -t
      * 
      * Arguments:
      *   argv[0]: program name
@@ -252,7 +252,7 @@ int main(int argc, char *argv[]) {
      * 
      * Total argc: 4
      * 
-     * Usage: ./mp3_tag_reader -d song.mp3 -t
+     * Usage: ./mp3_tag_editor -d song.mp3 -t
      *        (deletes the title tag from song.mp3)
      * ========================================================================= */
     else if ((strcmp(argv[1], "-d") == 0 || strcmp(argv[1], "--delete") == 0) && argc == 4) {
@@ -270,7 +270,7 @@ int main(int argc, char *argv[]) {
     /* =========================================================================
      * OPERATION 5: Delete ALL Tags (Strip)
      * 
-     * Command: ./mp3_tag_reader -D song.mp3
+     * Command: ./mp3_tag_editor -D song.mp3
      * 
      * Arguments:
      *   argv[0]: program name
@@ -279,7 +279,7 @@ int main(int argc, char *argv[]) {
      * 
      * Total argc: 3
      * 
-     * Usage: ./mp3_tag_reader -D song.mp3
+     * Usage: ./mp3_tag_editor -D song.mp3
      *        (removes all ID3 metadata from song.mp3)
      * 
      * Warning: This operation is irreversible!
@@ -298,7 +298,7 @@ int main(int argc, char *argv[]) {
     /* =========================================================================
      * OPERATION 6: Extract Album Art
      * 
-     * Command: ./mp3_tag_reader -x song.mp3 cover.jpg
+     * Command: ./mp3_tag_editor -x song.mp3 cover.jpg
      * 
      * Arguments:
      *   argv[0]: program name
@@ -308,7 +308,7 @@ int main(int argc, char *argv[]) {
      * 
      * Total argc: 4
      * 
-     * Usage: ./mp3_tag_reader -x song.mp3 cover.jpg
+     * Usage: ./mp3_tag_editor -x song.mp3 cover.jpg
      *        (extracts album art from song.mp3 to cover.jpg)
      * 
      * Note: The output filename should have the appropriate extension

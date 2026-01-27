@@ -57,8 +57,8 @@ int check_id3_tag_presence(const char *filename) {
         
         /* Verify the version is ID3v2.3 */
         /* ID3v2.3 format: header[3] = 0x03, header[4] = 0x00 */
-        if (header[3] != 0x03) {
-             display_error("Version not supported (We only handle ID3v2.3)");
+        if (header[3] != 0x03 && header[3] != 0x04) {
+             display_error("Version not supported (Only ID3v2.3 and v2.4 supported)");
              return 0;
         }
         
