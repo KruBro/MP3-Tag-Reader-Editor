@@ -64,7 +64,13 @@ typedef struct {
     char *year;          /**< Year of release (TYER frame) */
     char *comment;       /**< Comment (COMM frame) */
     char *genre;         /**< Genre (TCON frame) */
+    char *track;         /**< Track (TRCK frame) */
     
+    char *album_artist;  // TPE2 (New)
+    char *composer;      // TCOM (New)
+    char *copyright;     // TCOP (New)
+    char *publisher;     // TPUB (New)
+
     /* Tag metadata */
     uint16_t tag_version;    /**< Numeric version (3 for v2.3, 4 for v2.4) */
     uint32_t padding_size;   /**< Size of padding at end of tag */

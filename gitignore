@@ -1,0 +1,168 @@
+# Compiled Object files
+*.o
+*.obj
+*.ko
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+*.la
+*.lo
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+mp3_tag_reader
+mp3_tag_tool
+a.out
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Temporary files
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+temp.mp3
+temp_stripped.mp3
+*.backup
+
+# Build directories
+build/
+bin/
+obj/
+out/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.code-workspace
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mac OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Test files
+test_*.mp3
+sample*.mp3
+*.mp3.bak
+
+# Log files
+*.log
+
+# Core dumps
+core
+core.*
+vgcore.*
+
+# Valgrind output
+valgrind-*.log
+*.memcheck
+
+# Coverage files
+*.gcda
+*.gcno
+*.gcov
+coverage.info
+coverage/
+
+# Profiling data
+gmon.out
+*.prof
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+
+# Autotools
+.deps/
+.libs/
+*.la
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+compile
+config.guess
+config.h
+config.h.in
+config.log
+config.status
+config.sub
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+missing
+stamp-h1
+
+# Documentation build
+docs/_build/
+html/
+latex/
+
+# Package files
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.zip
+*.deb
+*.rpm
+
+# Personal notes
+TODO.md
+NOTES.md
+notes/
